@@ -1,69 +1,88 @@
-import { useState, useEffect } from "react";
-import BookmarkForm from "./BookmarkForm/BookmarkForm";
-import BookmarkList from "./BookmakList/BookmarkList";
-import "./Bookmarks.css";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Bookmarks = () => {
-  const [bookmarks, setBookmarks] = useState();
-  const [showForm, setShowForm] = useState(false);
+  const [bmTitle, setBmTitle] = useState("");
+  const [bmLink, setBmLink] = useState("");
+  const [bookmarks, setBookmarks] = useState([]);
 
-  const addBookmark = (bookmark) => {
+  const addBookmark = (e) => {
+    e.preventDefault();
     setBookmarks((prevBookmarks) => [
       ...prevBookmarks,
       {
-        id: bookmark.id,
-        bmTitle: bookmark.bmTitle,
-        bmLink: bookmark.bmLink,
+        id: uuidv4(),
+        bmTitle: bmTitle,
+        bmLink: bmLink,
       },
     ]);
-    setShowForm(false);
   };
-  console.log(bookmarks);
+
   const deleteBookmark = (id) => {
     setBookmarks((prevBookmarks) => prevBookmarks.filter((bm) => bm.id !== id));
     console.log(id);
   };
-  const openForm = () => {
-    setShowForm(true);
-  };
-  const closeForm = () => {
-    setShowForm(false);
-  };
-
-  useEffect(() => {
-    const json = localStorage.getItem("bookmarks");
-    const loadedBookmarks = JSON.parse(json);
-    if (loadedBookmarks) {
-      setBookmarks(loadedBookmarks);
-    }
-  }, []);
-
-  useEffect(() => {
-    const json = JSON.stringify(bookmarks);
-    localStorage.setItem("bookmarks", json);
-  }, [bookmarks]);
 
   return (
     <div className="bookmarks">
-      {showForm ? (
-        <div className="bookmarks-container">
-          <div className="backdrop">
-            <BookmarkForm addBookmark={addBookmark} closeForm={closeForm} />
-          </div>
-          <BookmarkList
-            bookmarks={bookmarks}
-            deleteBookmark={deleteBookmark}
-            openForm={openForm}
-          />
+      <section className="bookmark-form">
+        <div className="card">
+          <form onSubmit={addBookmark}>
+            <div className="form-control">
+              <label htmlFor="">Title</label>
+              <input
+                id="bmTitle"
+                type="text"
+                onChange={(e) => setBmTitle(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label htmlFor="">URL</label>
+              <input
+                id="bmLink"
+                type="text"
+                onChange={(e) => setBmLink(e.target.value)}
+              />
+            </div>
+            <button className="btn-add" type="submit">
+              Add Bookmark
+            </button>
+          </form>
         </div>
-      ) : (
-        <BookmarkList
-          bookmarks={bookmarks}
-          deleteBookmark={deleteBookmark}
-          openForm={openForm}
-        />
-      )}
+      </section>
+      <section className="bookmark-list">
+        <header>
+          <h3>Bookmarks</h3>
+        </header>
+        <div className="bms-container">
+          <ul className="bms-list">
+            {bookmarks.map((bm) => (
+              <li className="bm-item" key={bm.id}>
+                <a href={bm.bmLink}>
+                  <img
+                    src={
+                      "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=" +
+                      bm.bmLink +
+                      "&size=24"
+                    }
+                    alt=""
+                    className="image"
+                  />
+                  <span className="bm-title">{bm.bmTitle}</span>
+                </a>
+                <button
+                  className="btn-delete"
+                  onClick={() => deleteBookmark(bm.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </div>
   );
 };
+
 export default Bookmarks;
