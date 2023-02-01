@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AiFillCloseCircle } from "react-icons/ai";
 import "./BookmarkForm.css";
@@ -56,4 +56,4 @@ const BookmarkForm = (props) => {
     </section>
   );
 };
-export default BookmarkForm;
+export default React.memo(BookmarkForm);
