@@ -3,8 +3,10 @@ import Bookmarks from "./Bookmarks/Bookmarks";
 
 function App() {
   return (
-    <div className="App">
-      <Bookmarks />
+    <div className="app-wrapper">
+      <div className="App">
+        <Bookmarks />
+      </div>
     </div>
   );
 }
