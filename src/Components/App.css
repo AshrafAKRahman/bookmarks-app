@@ -1,22 +1,10 @@
-.app-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.App {
-  display: grid;
-  width: fit-content;
-  grid-gap: 10px;
-  align-items: center;
-  padding: 10px;
-  margin: 10px auto;
-  overflow: hidden;
-  font-family: "Poppins", helvetica, arial, sans-serif;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .item1 {
   grid-column: 1 / span 2;
   grid-row: 1 / span 3;
-}
+} 
