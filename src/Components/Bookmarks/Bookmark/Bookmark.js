@@ -1,5 +1,5 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import "./Bookmark.css";
+// import "./Bookmark.css";
 
 const Bookmark = ({ bm, deleteBookmark }) => {
   return (

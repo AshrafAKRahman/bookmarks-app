@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BookmarkList from "./BookmakList/BookmarkList";
 import BookmarkForm from "./BookmarkForm/BookmarkForm";
-import "./Bookmarks.css";
+// import "./Bookmarks.css";
 
 const Bookmarks = () => {
   const storedBookmarks = localStorage.getItem("bookmarks");

@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import './Greeting.css';
-import '../Time/Time.css';
+// import './Greeting.css';
+// import '../Time/Time.css';
 
 const Greeting = () => {
-  const [greetingMessage, setGreetingMessage] = useState('');
-  const [userName, setUserName] = useState('');
+  const [greetingMessage, setGreetingMessage] = useState("");
+  const [userName, setUserName] = useState("");
   const [isMade, setIsMade] = useState(true);
 
   const submitUserName = (e) => {
     e.preventDefault();
     console.log(userName);
-    setIsMade(true)
-  }
+    setIsMade(true);
+  };
 
   let name;
   if (isMade) {
-    name = (
-      <span>{userName}</span>
-    )
+    name = <span>{userName}</span>;
   }
 
   const openNameInput = () => {
     setIsMade(false);
-  }
+  };
 
   useEffect(() => {
     const item = localStorage.getItem("userName");
@@ -36,8 +34,7 @@ const Greeting = () => {
   useEffect(() => {
     const json = JSON.stringify(userName);
     localStorage.setItem("userName", json);
-  }, [userName])
-
+  }, [userName]);
 
   useEffect(() => {
     let d = new Date();
@@ -50,33 +47,27 @@ const Greeting = () => {
     } else {
       setGreetingMessage("Good Evening");
     }
-  }, [])
+  }, []);
 
   return (
     <div className="time-card greeting">
       <span>{greetingMessage}</span>
       <br />
-      {
-        !isMade ?
-          <form
-            className="greeting-form"
-            onSubmit={submitUserName}>
-            <input
-              type="text"
-              value={userName}
-              onChange={event => setUserName(event.target.value)}
-            />
-          </form>
-          :
-          <span
-            className="user-name"
-            onClick={openNameInput}
-          >
-            {name}!
-          </span>
-      }
+      {!isMade ? (
+        <form className="greeting-form" onSubmit={submitUserName}>
+          <input
+            type="text"
+            value={userName}
+            onChange={(event) => setUserName(event.target.value)}
+          />
+        </form>
+      ) : (
+        <span className="user-name" onClick={openNameInput}>
+          {name}!
+        </span>
+      )}
     </div>
   );
-}
+};
 
 export default Greeting;

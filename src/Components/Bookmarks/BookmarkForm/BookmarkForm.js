@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AiFillCloseCircle } from "react-icons/ai";
-import "./BookmarkForm.css";
+// import "./BookmarkForm.css";
 
 const BookmarkForm = (props) => {
   const [bmTitle, setBmTitle] = useState("");
