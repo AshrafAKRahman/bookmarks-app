@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 // import "./Time.css";
 
 const Time = () => {
@@ -25,10 +24,10 @@ const Time = () => {
 
   setTimeout(updateTime, 1000);
   return (
-    <Card>
+    <div>
       <span>{currentTime}</span>
       <span> {now}</span>
-    </Card>
+    </div>
   );
 };
 

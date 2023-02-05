@@ -46,10 +46,10 @@
     color: #ddd;
   }
   
-  .todo-form,
+  /* .todo-form, */
   .todo-item {
     margin: 7px;
-    border: 2px solid #fff;
+    border: 2px solid #fff; 
     border-radius: 3px;
     padding: 4px 5px;
     justify-content: space-between;

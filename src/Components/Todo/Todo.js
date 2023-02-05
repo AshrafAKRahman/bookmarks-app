@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import './Todo.css'
+import "./Todo.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiFillEdit } from "react-icons/ai";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
